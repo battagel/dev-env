@@ -62,12 +62,15 @@ RUN git clone https://github.com/z-shell/F-Sy-H.git ${ZSH_CUSTOM:-$HOME/.oh-my-z
 # Move config files
 COPY ./zsh/.zshrc /tmp/.zshrc
 RUN cat /tmp/.zshrc > ~/.zshrc && sudo rm /tmp/.zshrc
-COPY ./zsh/.p10k.zsh /tmp/.p10k.zsh
-RUN cat /tmp/.p10k.zsh > ~/.p10k.zsh && sudo rm /tmp/.p10k.zsh
 COPY ./zsh/matthewbattagel.zsh-theme /tmp/matthewbattagel.zsh-theme 
 RUN cat /tmp/matthewbattagel.zsh-theme > ~/.oh-my-zsh/themes/matthewbattagel.zsh-theme && sudo rm /tmp/matthewbattagel.zsh-theme
-# Select syntax highlighting theme
 ENTRYPOINT [ "/bin/zsh" ]
+
+# Powerlevel10k
+RUN git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+COPY ./zsh/.p10k.zsh /tmp/.p10k.zsh
+RUN cat /tmp/.p10k.zsh > ~/.p10k.zsh && sudo rm /tmp/.p10k.zsh
+
 
 # NodeJS
 ARG DEBIAN_FRONTEND=noninteractive
