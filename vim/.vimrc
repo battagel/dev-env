@@ -96,9 +96,8 @@ let g:sonokai_better_performance = 1
 let g:sonokai_transparent_background=0
 let g:sonokai_diagnostic_line_highlight=1
 " Stop comments being italic - causes highlighting problem
-let g:sonokai_disable_italic_comment=0
+let g:sonokai_disable_italic_comment=1
 colorscheme sonokai
-
 
 " Fix backspace not working issue
 set backspace=indent,eol,start
@@ -135,6 +134,8 @@ set wildmenu
 " Fold specific
 " set foldmethod=indent
 
+" Shell
+set shell=zsh
 " Center on search
 nnoremap n nzz
 nnoremap N Nzz
@@ -183,12 +184,6 @@ let g:coc_disable_startup_warning = 1
 " Run :CocInstall <package> to install new language support
 " Run :CocList to view packages
 " use <tab> for trigger completion and navigate to the next complete item
-let g:coc_global_extensions = [
-  \ 'coc-tsserver',
-  \ 'coc-lists',
-  \ 'coc-prettier',
-  \ 'coc-pyright'
-  \ ]
 
 " \do performs a code action
 nmap <leader>a <Plug>(coc-codeaction)

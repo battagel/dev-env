@@ -85,7 +85,7 @@ tmux_conf_theme_colour_17="#e4e4e4"   # white
 #tmux_conf_theme_colour_17="colour15"
 
 # Custom Colour Theme
-custom_colour_accent="colour215"  # Accent Colour
+custom_colour_accent="colour110"  # Accent Colour
 custom_colour_user="colour6"
 custom_colour_root="colour5"
 custom_colour_warning="colour3"
