@@ -1,19 +1,4 @@
-<div align="center">
-  <p></p>
-  <h1>Battagel's Dockerised Development Environment</h1>
-  <p></p>
-  <p align="center">
-    &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
-    <a href="#prerequisites"><b>Prerequisites</b></a>
-    &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
-    <a href="#installation"><b>Installation</b></a>
-    &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
-    <a href="#acknowledgements"><b>Acknowledgements</b></a>
-  </p>
-  <br />
-</div>
-
-<h1 align="center">NvChad</h1>
+<h1 align="center">Battagel's Dockerised Development Environment</h1>
 
 <div align="center">
     <a href="#intro"><b>Intro</b></a>
