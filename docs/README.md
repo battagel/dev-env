@@ -16,7 +16,7 @@ Customising your development environment on multiple systems is a real faff isn'
 
 ## Prerequisites
 1. Docker installed and running
-2. Access to [deb.debian.org](deb.debian.org)
+2. Access to [deb.debian.org](http://deb.debian.org)
 
 ## Installation
 Clone the repo. Enter into the repo and run the following:
