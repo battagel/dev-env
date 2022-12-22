@@ -3,13 +3,27 @@
   <h1>Battagel's Dockerised Development Environment</h1>
   <p></p>
   <p align="center">
-    <a href="#-intro"><b>Intro</b></a>
     &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
-    <a href="#prerequisites-"><b>Prerequisites</b></a>
+    <a href="#prerequisites"><b>Prerequisites</b></a>
     &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
-    <a href="#installation-"><b>Installation</b></a>
+    <a href="#installation"><b>Installation</b></a>
+    &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
+    <a href="#acknowledgements"><b>Acknowledgements</b></a>
   </p>
   <br />
+</div>
+
+<h1 align="center">NvChad</h1>
+
+<div align="center">
+    <a href="#intro"><b>Intro</b></a>
+  <span> • </span>
+    <a href="#prerequisites"><b>Prerequisites</b></a>
+  <span> • </span>
+    <a href="#installation"><b>Installation</b></a>
+  <span> • </span>
+    <a href="#acknowledgements"><b>Acknowledgements</b></a>
+  <p></p>
 </div>
 
 ## Intro
@@ -33,3 +47,6 @@ Run the dev_env container with:
 ```
 $  dev
 ```
+
+## Acknowledgements
+Thanks to [NvChad](https://github.com/NvChad/NvChad) for the nvim configuration.
