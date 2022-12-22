@@ -9,6 +9,7 @@
   <span> • </span>
     <a href="#acknowledgements"><b>Acknowledgements</b></a>
   <p></p>
+  <img src="docs/example.png" alt="Example of dev env" style="width:100%" />
 </div>
 
 ## Intro
