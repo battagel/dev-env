@@ -128,22 +128,22 @@ remove:
 	if [[ $$REPLY =~ ^[Nn] ]]; then \
 		exit 1; \
 	fi
-	rm -rf $(HOME)/.vim
-	rm -rf $(HOME)/.vimrc
-	rm -rf $(HOME)/.tmux.conf
-	rm -rf $(HOME)/.tmux.conf.local
-	rm -rf $(HOME)/.p10k.zsh
-	rm -rf $(HOME)/.oh-my-zsh
-	rm -rf $(HOME)/.zshrc
-	rm -rf $(HOME)/.zsh_history
-	rm -rf $(HOME)/.zsh-update
-	rm -rf $(HOME)/.zsh-update.lock
-	rm -rf $(HOME)/.zcompdump
-	rm -rf $(HOME)/.zsh-autosuggestions
-	rm -rf $(HOME)/.zsh-syntax-highlighting
+	rm -rf $(HOME)/.vim \
+		$(HOME)/.vimrc \
+		$(HOME)/.tmux.conf \
+		$(HOME)/.tmux.conf.local \
+		$(HOME)/.p10k.zsh \
+		$(HOME)/.oh-my-zsh \
+		$(HOME)/.zshrc \
+		$(HOME)/.zsh_history \
+		$(HOME)/.zsh-update \
+		$(HOME)/.zsh-update.lock \
+		$(HOME)/.zcompdump \
+		$(HOME)/.zsh-autosuggestions \
+		$(HOME)/.zsh-syntax-highlighting
 	@read -p "Do you want to also delete this repo? (Y/n) " -r; \
 	if [[ $$REPLY =~ ^[Yy] ]]; then \
-		rm -rf $(DEV_REPO)
-		cd ..
+		rm -rf $(DEV_REPO); \
+		cd ..; \
 	fi
 	@echo "Dev Environment removed"
