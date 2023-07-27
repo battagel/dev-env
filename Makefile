@@ -9,6 +9,7 @@ COC := 'coc-css coc-eslint coc-html coc-json coc-sh coc-tsserver coc-prettier co
 .DEFAULT_GOAL := setup
 
 .PHONY: confirm_home_dir
+confirm_home_dir:
 	@echo "                        .________________________.                            "
 	@echo "                        ||__===____________===__||                            "
 	@echo "                        ||                      ||                            "
@@ -74,7 +75,7 @@ zsh:
 .PHONY: omz
 omz:
 	@echo "Starting Oh-My-Zsh installation"
-	RUNZSH=no sh -c "$$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || { echo "Error: Oh-My-Zsh installation failed."; exit 1; }
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed 's:env zsh -l::g' | sed 's:chsh -s .*$::g')" || { echo "Error: Oh-My-Zsh installation failed."; exit 1; }
 	$(GIT_CLONE) https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions || { echo "Error: Cloning zsh-autosuggestions failed."; exit 1; }
 	$(GIT_CLONE) https://github.com/z-shell/F-Sy-H.git ${ZSH_CUSTOM:-$(HOME)/.oh-my-zsh/custom}/plugins/F-Sy-H || { echo "Error: Cloning F-Sy-H plugin failed."; exit 1; }
 	cp $(DEV_REPO)/zsh/matthewbattagel.zsh-theme ~/.oh-my-zsh/themes/matthewbattagel.zsh-theme || { echo "Error: Copying zsh theme failed."; exit 1; }
