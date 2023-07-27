@@ -144,4 +144,6 @@ remove:
 	@read -p "Do you want to also delete this repo? (Y/n) " -r; \
 	if [[ $$REPLY =~ ^[Yy] ]]; then \
 		rm -rf $(DEV_REPO)
+		cd ..
 	fi
+	@echo "Dev Environment removed"
