@@ -10,6 +10,8 @@ COC := 'coc-css coc-eslint coc-html coc-json coc-sh coc-tsserver coc-prettier co
 
 .PHONY: confirm_home_dir
 confirm_home_dir:
+@echo
+	@echo "################ Matt's Developer Environment Setup Tool ################"
 	@echo "This script will install the development environment in your home directory."
 	@echo "Your current home directory is: $(HOME)"
 	@echo "Enure that any proxies have been set up correctly before running"
@@ -19,7 +21,7 @@ confirm_home_dir:
 	fi
 
 .PHONY: setup
-setup: confirm_home_dir presetup tools zsh p10k vim tmux nvim omz clean
+setup: confirm_home_dir presetup tools zsh omz p10k vim tmux nvim clean
 	$(ECHO) "Installing Dev Environment"
 
 .PHONY: presetup
@@ -63,6 +65,13 @@ zsh:
 	@echo "Starting Zsh installation"
 	$(PKG_MGR) zsh || { echo "Error: Zsh installation failed."; exit 1; }
 
+.PHONY: omz
+omz:
+	@echo "Starting Oh-My-Zsh installation"
+	RUNZSH=no sh -c "$$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || { echo "Error: Oh-My-Zsh installation failed."; exit 1; }
+	$(GIT_CLONE) https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions || { echo "Error: Cloning zsh-autosuggestions failed."; exit 1; }
+	$(GIT_CLONE) https://github.com/z-shell/F-Sy-H.git ${ZSH_CUSTOM:-$(HOME)/.oh-my-zsh/custom}/plugins/F-Sy-H || { echo "Error: Cloning F-Sy-H plugin failed."; exit 1; }
+	cp $(DEV_REPO)/zsh/matthewbattagel.zsh-theme ~/.oh-my-zsh/themes/matthewbattagel.zsh-theme || { echo "Error: Copying zsh theme failed."; exit 1; }
 
 .PHONY: p10k
 p10k:
@@ -75,7 +84,7 @@ vim:
 	@echo "Starting vim installation"
 	cd /tmp && $(GIT_CLONE) https://github.com/vim/vim.git
 	cd /tmp/vim/src && $(MAKE) && $(MAKE) install || { echo "Error: Vim installation failed."; exit 1; }
-	rm -r /tmp/vim
+	rm -rf /tmp/vim
 	mkdir -p ~/.vim/bundle
 	$(GIT_CLONE) https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim || { echo "Error: Cloning VundleVim failed."; exit 1; }
 	cp $(DEV_REPO)/vim/.vimrc /tmp/.vimrc
@@ -98,25 +107,20 @@ tmux:
 
 .PHONY: nvim
 nvim:
-	@echo "Skipping neovim installation"
+	@echo "Skipping neovim installation for now"
 
 .PHONY: clean
 clean:
 	@echo "Cleaning up"
 	sudo yum clean all
 
-.PHONY: omz
-omz:
-	@echo "Starting Oh-My-Zsh installation"
-	sh -c "$$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || { echo "Error: Oh-My-Zsh installation failed."; exit 1; }
-	$(GIT_CLONE) https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions || { echo "Error: Cloning zsh-autosuggestions failed."; exit 1; }
-	$(GIT_CLONE) https://github.com/z-shell/F-Sy-H.git ${ZSH_CUSTOM:-$(HOME)/.oh-my-zsh/custom}/plugins/F-Sy-H || { echo "Error: Cloning F-Sy-H plugin failed."; exit 1; }
-	cp $(DEV_REPO)/zsh/matthewbattagel.zsh-theme ~/.oh-my-zsh/themes/matthewbattagel.zsh-theme || { echo "Error: Copying zsh theme failed."; exit 1; }
-
 .PHONY: remove
 remove:
 	@echo "Removing Dev Environment"
-	rm -rf $(DEV_REPO)
+	@read -p "Are you sure? (Y/n) " -r; \
+	if [[ $$REPLY =~ ^[Nn] ]]; then \
+		exit 1; \
+	fi
 	rm -rf $(HOME)/.vim
 	rm -rf $(HOME)/.vimrc
 	rm -rf $(HOME)/.tmux.conf
@@ -130,3 +134,8 @@ remove:
 	rm -rf $(HOME)/.zcompdump
 	rm -rf $(HOME)/.zsh-autosuggestions
 	rm -rf $(HOME)/.zsh-syntax-highlighting
+	@read -p "Do you want to also delete this repo? (Y/n) " -r; \
+	if [[ $$REPLY =~ ^[Nn] ]]; then \
+		exit 1; \
+	fi
+	rm -rf $(DEV_REPO)
