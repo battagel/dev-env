@@ -15,7 +15,7 @@ RUN adduser --disabled-password --gecos '' "$DOCKER_USER"
 RUN adduser "$DOCKER_USER" sudo
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 USER "$DOCKER_USER"
-WORKDIR "/home/$DOCKER_USER"
+WORKDIR "/home/$DOCKER_USER/mnt"
 RUN mkdir repos
 RUN touch ~/.sudo_as_admin_successful
 
@@ -81,6 +81,8 @@ RUN sudo rm -r /tmp/neovim
 RUN curl -fLo .local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 # COPY ./nvim/ .config/nvim/
 RUN git clone 'https://github.com/NvChad/NvChad.git' $HOME/.config/nvim
+RUN chmod +x $HOME/.config/nvim
+RUN sudo chown root:root $HOME/.config/nvim
 RUN pip3 install pynvim
 RUN sudo npm i -g neovim
 RUN sudo rm -r /tmp/nvim.dev
@@ -96,6 +98,9 @@ RUN cat /tmp/.vimrc > ~/.vimrc && sudo rm /tmp/.vimrc
 RUN yes | vim +PluginInstall +qall
 RUN npm install --prefix .vim/bundle/coc.nvim
 
+# Emacs
+
+
 # Tmux
 RUN curl -L -o /tmp/tmux.tar.gz "https://github.com/tmux/tmux/releases/download/$TMUX_VERSION/tmux-$TMUX_VERSION.tar.gz"
 RUN cd /tmp && tar xzf "tmux.tar.gz" -C /tmp
@@ -106,6 +111,8 @@ COPY ./tmux/.tmux.conf /tmp/.tmux.conf
 RUN cat /tmp/.tmux.conf > ~/.tmux.conf && sudo rm /tmp/.tmux.conf
 COPY ./tmux/.tmux.conf.local /tmp/.tmux.conf.local
 RUN cat /tmp/.tmux.conf.local > ~/.tmux.conf.local && sudo rm /tmp/.tmux.conf.local
+
+WORKDIR "/home/$DOCKER_USER/mnt"
 
 # Cleanup
 RUN sudo apt-get clean

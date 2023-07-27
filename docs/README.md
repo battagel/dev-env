@@ -26,7 +26,7 @@ docker build -t dev-env .
 ```
 Add an alias to .zshrc or .bashrc for starting the dev env.
 ```
-echo "alias dev='docker run --rm -ti -v "${PWD}":/home/dev/"${PWD##*/}" dev-env'" >> ~/.zshrc
+echo "alias dev='docker run --rm -ti -h dev-env -v "${PWD}":/home/dev/"${PWD##*/}" dev-env'" >> ~/.zshrc
 source .zshrc
 ```
 Run the dev_env container with:
