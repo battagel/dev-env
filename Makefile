@@ -90,7 +90,7 @@ vim:
 	@echo "Starting vim installation"
 	cd /tmp && $(GIT_CLONE) https://github.com/vim/vim.git
 	cd /tmp/vim/src && $(MAKE) && $(MAKE) install || { echo "Error: Vim installation failed."; exit 1; }
-	rm -rf /tmp/vim
+	sudo rm -rf /tmp/vim
 	mkdir -p ~/.vim/bundle
 	$(GIT_CLONE) https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim || { echo "Error: Cloning VundleVim failed."; exit 1; }
 	cp $(DEV_REPO)/vim/.vimrc /tmp/.vimrc
@@ -104,8 +104,8 @@ tmux:
 	curl -L -o /tmp/tmux.tar.gz https://github.com/tmux/tmux/releases/download/$(TMUX_VERSION/tmux-$(TMUX_VERSION).tar.gz
 	cd /tmp && tar xzf tmux.tar.gz -C /tmp
 	cd /tmp/tmux-$(TMUX_VERSION) && ./configure && $(MAKE) && sudo $(MAKE) install || { echo "Error: Tmux installation failed."; exit 1; }
-	rm -r /tmp/tmux.tar.gz
-	rm -r /tmp/tmux-$(TMUX_VERSION)
+	sudo rm -r /tmp/tmux.tar.gz
+	sudo rm -r /tmp/tmux-$(TMUX_VERSION)
 	cp $(DEV_REPO)/tmux/.tmux.conf /tmp/.tmux.conf
 	cp /tmp/.tmux.conf ~/.tmux.conf && sudo rm /tmp/.tmux.conf || { echo "Error: Copying .tmux.conf failed."; exit 1; }
 	cp $(DEV_REPO)/tmux/.tmux.conf.local /tmp/.tmux.conf.local
