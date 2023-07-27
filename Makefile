@@ -142,7 +142,6 @@ remove:
 	rm -rf $(HOME)/.zsh-autosuggestions
 	rm -rf $(HOME)/.zsh-syntax-highlighting
 	@read -p "Do you want to also delete this repo? (Y/n) " -r; \
-	if [[ $$REPLY =~ ^[Nn] ]]; then \
-		exit 1; \
+	if [[ $$REPLY =~ ^[Yy] ]]; then \
+		rm -rf $(DEV_REPO)
 	fi
-	rm -rf $(DEV_REPO)
