@@ -10,7 +10,14 @@ COC := 'coc-css coc-eslint coc-html coc-json coc-sh coc-tsserver coc-prettier co
 
 .PHONY: confirm_home_dir
 confirm_home_dir:
-@echo
+	@echo                         .________________________.
+	@echo                         ||__===____________===__||
+	@echo                         ||                      ||
+	@echo                         |:----------------------:|
+	@echo                         ||                      ||
+	@echo                         ||______________________||
+	@echo                         |'----------------------'|
+	@echo                         '--'       '--'       '--'
 	@echo "################ Matt's Developer Environment Setup Tool ################"
 	@echo "This script will install the development environment in your home directory."
 	@echo "Your current home directory is: $(HOME)"
