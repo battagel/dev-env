@@ -12,7 +12,7 @@ COC := 'coc-css coc-eslint coc-html coc-json coc-sh coc-tsserver coc-prettier co
 confirm_home_dir:
 	@echo "                        .________________________.                            "
 	@echo "                        ||__===____________===__||                            "
-	@echo "                        ||                      ||                            "
+	@echo "                        ||    Matt's Goodies    ||                            "
 	@echo "                        |:----------------------:|                            "
 	@echo "                        ||                      ||                            "
 	@echo "                        ||______________________||                            "
@@ -78,7 +78,6 @@ omz:
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended || { echo "Error: Oh-My-Zsh installation failed."; exit 1; }
 	$(GIT_CLONE) https://github.com/zsh-users/zsh-autosuggestions $(HOME)/.oh-my-zsh/custom/plugins/zsh-autosuggestions || { echo "Error: Cloning zsh-autosuggestions failed."; exit 1; }
 	$(GIT_CLONE) https://github.com/z-shell/F-Sy-H.git $(HOME)/.oh-my-zsh/custom/plugins/F-Sy-H || { echo "Error: Cloning F-Sy-H plugin failed."; exit 1; }
-	cp $(DEV_REPO)/zsh/matthewbattagel.zsh-theme ~/.oh-my-zsh/themes/matthewbattagel.zsh-theme || { echo "Error: Copying zsh theme failed."; exit 1; }
 
 .PHONY: p10k
 p10k:
