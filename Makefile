@@ -77,10 +77,9 @@ zsh:
 .PHONY: omz
 omz:
 	@echo "Starting Oh-My-Zsh installation"
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended || { echo "Error: Oh-My-Zsh installation failed."; exit 1; }
+	sh -c "$$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended || { echo "Error: Oh-My-Zsh installation failed."; exit 1; }
 	$(GIT_CLONE) https://github.com/zsh-users/zsh-autosuggestions $(HOME)/.oh-my-zsh/custom/plugins/zsh-autosuggestions || { echo "Error: Cloning zsh-autosuggestions failed."; exit 1; }
 	$(GIT_CLONE) https://github.com/z-shell/F-Sy-H.git $(HOME)/.oh-my-zsh/custom/plugins/F-Sy-H || { echo "Error: Cloning F-Sy-H plugin failed."; exit 1; }
-	chsh -s $(which zsh)
 
 .PHONY: p10k
 p10k:
