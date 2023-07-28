@@ -30,7 +30,7 @@ confirm_home_dir:
 	fi
 
 .PHONY: setup
-setup: splash presetup tools zsh omz p10k vim nvim clean
+setup: splash presetup tools bash zsh omz p10k vim nvim clean
 	@echo "Installing Dev Environment"
 
 .PHONY: presetup
@@ -68,11 +68,15 @@ tools:
 		python3-venv \
 		golang || { echo "Error: Package installation failed."; exit 1; }
 
+.PHONY: bash
+zsh:
+	@echo "Starting Bash installation"
+	cp $(DEV_REPO)/bash/.profile ~/.profile || { echo "Error: Copying .bashrc failed."; exit 1; }
+
 .PHONY: zsh
 zsh:
 	@echo "Starting Zsh installation"
 	$(PKG_MGR) zsh || { echo "Error: Zsh installation failed."; exit 1; }
-	cp $(DEV_REPO)/zsh/.zshrc ~/.zshrc || { echo "Error: Copying .zshrc failed."; exit 1; }
 
 .PHONY: omz
 omz:
@@ -80,6 +84,7 @@ omz:
 	sh -c "$$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended || { echo "Error: Oh-My-Zsh installation failed."; exit 1; }
 	$(GIT_CLONE) https://github.com/zsh-users/zsh-autosuggestions $(HOME)/.oh-my-zsh/custom/plugins/zsh-autosuggestions || { echo "Error: Cloning zsh-autosuggestions failed."; exit 1; }
 	$(GIT_CLONE) https://github.com/z-shell/F-Sy-H.git $(HOME)/.oh-my-zsh/custom/plugins/F-Sy-H || { echo "Error: Cloning F-Sy-H plugin failed."; exit 1; }
+	cp $(DEV_REPO)/zsh/.zshrc ~/.zshrc || { echo "Error: Copying .zshrc failed."; exit 1; }
 
 .PHONY: p10k
 p10k:
