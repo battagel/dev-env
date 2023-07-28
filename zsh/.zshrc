@@ -8,7 +8,7 @@ fi
 # If you come from bash you might have to change your $PATH.
 export PATH=/opt/hpe/bin:auto/share/bin:~/.local/bin:~/.emacs.d/bin:$PATH
 export TERM="xterm-256color"
-export PATH="${PATH}:/auto/homecxo.nas01/battagel/.cargo/bin/navi"
+export PATH="${PATH}:/auto/homebuk.nas01/battagel/.cargo/bin/navi"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 _call_navi() {
@@ -127,9 +127,15 @@ source $ZSH/oh-my-zsh.sh
 #
 # Navi
 alias n="navi"
-#
+
 # Docker
 alias dev='docker run --rm -ti -v "${PWD}":/home/dev/mnt dev-env'
+
+# Work
+alias proxy="export {http, https, ftp}_proxy='http://web-proxy.corp.hpecorp.net:8080'"
+alias unproxy="unset {http, https, ftp}_proxy"
+alias cdws="cd /export/ws/ws0/battagel"
+alias bsrv="ssh battagel@cxo-buildsrv03-vm.cxo.storage.hpecorp.net"
 
 alias ctags=/opt/homebrew/bin/ctags
 
