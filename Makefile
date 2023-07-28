@@ -86,16 +86,15 @@ p10k:
 	$(GIT_CLONE) --depth=1 https://github.com/romkatv/powerlevel10k.git $(HOME)/.oh-my-zsh/custom/themes/powerlevel10k || { echo "Error: Cloning Powerlevel10k theme failed."; exit 1; }
 	cp $(DEV_REPO)/zsh/.p10k.zsh ~/.p10k.zsh || { echo "Error: Copying .p10k.zsh failed."; exit 1; }
 
-.PHONY: nodejs
-nodejs:
-	cd /tmp && curl -L -o node.tar.gz https://nodejs.org/dist/v$(NODE_VERSION/node-v$(NODE_VERSION).tar.gz &
-	wait
-	tar -xzf node.tar.gz
-	cd node-v$(NODE_VERSION)
-	./configure
-	make
-	sudo make install
-	sudo rm -rf /tmp/node-v$(NODE_VERSION)
+# .PHONY: nodejs
+# nodejs:
+# 	cd /tmp && curl -L -o node.tar.gz https://nodejs.org/dist/v$(NODE_VERSION/node-v$(NODE_VERSION).tar.gz
+# 	tar -xzf node.tar.gz
+# 	cd node-v$(NODE_VERSION)
+# 	./configure
+# 	make
+# 	sudo make install
+# 	sudo rm -rf /tmp/node-v$(NODE_VERSION)
 
 .PHONY: vim
 vim:
@@ -107,7 +106,7 @@ vim:
 	$(GIT_CLONE) https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim || { echo "Error: Cloning VundleVim failed."; exit 1; }
 	cp $(DEV_REPO)/vim/.vimrc ~/.vimrc
 	yes | vim +PluginInstall +qall || { echo "Error: Vim Plugin installation failed."; exit 1; }
-	npm install --prefix ~/.vim/bundle/coc.nvim || { echo "Error: Installing coc.nvim failed."; exit 1; }
+# npm install --prefix ~/.vim/bundle/coc.nvim || { echo "Error: Installing coc.nvim failed."; exit 1; }
 
 .PHONY: tmux
 tmux:
