@@ -3,21 +3,23 @@ MAKE := sudo make
 DEV_REPO := $(PWD)
 GIT_CLONE := git clone
 
+NODE_VERSION := 18.0.0
 TMUX_VERSION := 3.3a
 COC := 'coc-css coc-eslint coc-html coc-json coc-sh coc-tsserver coc-prettier coc-lists coc-pyright'
 
 .DEFAULT_GOAL := setup
 
-.PHONY: confirm_home_dir
+.PHONY: splash
 confirm_home_dir:
-	@echo "                        .________________________.                            "
-	@echo "                        ||__===____________===__||                            "
-	@echo "                        ||    Matt's Goodies    ||                            "
-	@echo "                        |:----------------------:|                            "
-	@echo "                        ||                      ||                            "
-	@echo "                        ||______________________||                            "
-	@echo "                        |'----------------------'|                            "
-	@echo "                        '--'       '--'       '--'                            "
+	@echo "                                  _-----_           "
+	@echo "                         _________|_____|________   "
+	@echo "                        ||__===____________===__||  "
+	@echo "                        ||  Matt's Goodie Box!  ||  "
+	@echo "                        |:----------------------:|  "
+	@echo "                        ||                      ||  "
+	@echo "                        ||______________________||  "
+	@echo "                        |'----------------------'|  "
+	@echo "                        '--'       '--'       '--'  "
 	@echo "################ Matt's Developer Environment Setup Tool ################"
 	@echo "This script will install the development environment in your home directory."
 	@echo "Your current home directory is: $(HOME)"
@@ -28,13 +30,12 @@ confirm_home_dir:
 	fi
 
 .PHONY: setup
-setup: confirm_home_dir presetup tools zsh omz p10k vim tmux nvim clean
-	$(ECHO) "Installing Dev Environment"
+setup: splash presetup tools zsh omz p10k nodejs vim tmux nvim clean
+	@echo "Installing Dev Environment"
 
 .PHONY: presetup
 presetup:
 	@echo "Starting Presetup"
-	mkdir -p $(DEV_REPO)/repos
 
 .PHONY: tools
 tools:
@@ -85,6 +86,16 @@ p10k:
 	$(GIT_CLONE) --depth=1 https://github.com/romkatv/powerlevel10k.git $(HOME)/.oh-my-zsh/custom/themes/powerlevel10k || { echo "Error: Cloning Powerlevel10k theme failed."; exit 1; }
 	cp $(DEV_REPO)/zsh/.p10k.zsh ~/.p10k.zsh || { echo "Error: Copying .p10k.zsh failed."; exit 1; }
 
+.PHONY: nodejs
+nodejs:
+	cd /tmp && curl -L -o node.tar.gz https://nodejs.org/dist/v$(NODE_VERSION/node-v$(NODE_VERSION).tar.gz
+	tar -xzf node.tar.gz
+	cd node-v$(NODE_VERSION)
+	./configure
+	make
+	sudo make install
+	sudo rm -rf /tmp/node-v$(NODE_VERSION)
+
 .PHONY: vim
 vim:
 	@echo "Starting vim installation"
@@ -93,8 +104,7 @@ vim:
 	sudo rm -rf /tmp/vim
 	mkdir -p ~/.vim/bundle
 	$(GIT_CLONE) https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim || { echo "Error: Cloning VundleVim failed."; exit 1; }
-	cp $(DEV_REPO)/vim/.vimrc /tmp/.vimrc
-	cp /tmp/.vimrc ~/.vimrc && sudo rm /tmp/.vimrc || { echo "Error: Copying .vimrc failed."; exit 1; }
+	cp $(DEV_REPO)/vim/.vimrc ~/.vimrc
 	yes | vim +PluginInstall +qall || { echo "Error: Vim Plugin installation failed."; exit 1; }
 	npm install --prefix ~/.vim/bundle/coc.nvim || { echo "Error: Installing coc.nvim failed."; exit 1; }
 
