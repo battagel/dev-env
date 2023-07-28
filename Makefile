@@ -112,7 +112,7 @@ vim:
 .PHONY: tmux
 tmux:
 	@echo "Starting tmux installation"
-	curl -L -o /tmp/tmux.tar.gz https://github.com/tmux/tmux/releases/download/$(TMUX_VERSION/tmux-$(TMUX_VERSION).tar.gz
+	curl -L -o /tmp/tmux.tar.gz https://github.com/tmux/tmux/releases/download/$(TMUX_VERSION)/tmux-$(TMUX_VERSION).tar.gz
 	cd /tmp && tar xzf tmux.tar.gz -C /tmp
 	cd /tmp/tmux-$(TMUX_VERSION) && ./configure && $(MAKE) && sudo $(MAKE) install || { echo "Error: Tmux installation failed."; exit 1; }
 	sudo rm -r /tmp/tmux.tar.gz
