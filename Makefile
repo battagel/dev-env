@@ -86,8 +86,9 @@ p10k:
 	$(GIT_CLONE) --depth=1 https://github.com/romkatv/powerlevel10k.git $(HOME)/.oh-my-zsh/custom/themes/powerlevel10k || { echo "Error: Cloning Powerlevel10k theme failed."; exit 1; }
 	cp $(DEV_REPO)/zsh/.p10k.zsh ~/.p10k.zsh || { echo "Error: Copying .p10k.zsh failed."; exit 1; }
 
-# .PHONY: nodejs
-# nodejs:
+.PHONY: nodejs
+nodejs:
+	@echo "Starting NodeJS installation"
 # 	cd /tmp && curl -L -o node.tar.gz https://nodejs.org/dist/v$(NODE_VERSION/node-v$(NODE_VERSION).tar.gz
 # 	tar -xzf node.tar.gz
 # 	cd node-v$(NODE_VERSION)
