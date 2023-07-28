@@ -88,7 +88,8 @@ p10k:
 
 .PHONY: nodejs
 nodejs:
-	cd /tmp && curl -L -o node.tar.gz https://nodejs.org/dist/v$(NODE_VERSION/node-v$(NODE_VERSION).tar.gz
+	cd /tmp && curl -L -o node.tar.gz https://nodejs.org/dist/v$(NODE_VERSION/node-v$(NODE_VERSION).tar.gz &
+	wait
 	tar -xzf node.tar.gz
 	cd node-v$(NODE_VERSION)
 	./configure
