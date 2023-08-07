@@ -118,6 +118,7 @@ vim:
 .PHONY: tmux
 tmux:
 	@echo "Starting tmux installation"
+# Had error when doing this
 	curl -L -o /tmp/tmux.tar.gz https://github.com/tmux/tmux/releases/download/$(TMUX_VERSION)/tmux-$(TMUX_VERSION).tar.gz
 	cd /tmp && tar xzf tmux.tar.gz -C /tmp
 	cd /tmp/tmux-$(TMUX_VERSION) && ./configure && $(MAKE) && sudo $(MAKE) install || { echo "Error: Tmux installation failed."; exit 1; }
@@ -135,6 +136,11 @@ nvim:
 .PHONY: clean
 clean:
 	@echo "Cleaning up"
+	source $(HOME).profile
+	source $(HOME).zshrc
+	source $(HOME).vimrc
+	source $(HOME).tmux.conf
+	source $(HOME).tmux.conf.local
 	sudo yum clean all
 
 .PHONY: remove

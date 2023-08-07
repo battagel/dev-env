@@ -132,7 +132,7 @@ alias n="navi"
 alias dev='docker run --rm -ti -v "${PWD}":/home/dev/mnt dev-env'
 
 # Work
-alias proxy="export {http, https, ftp}_proxy='http://web-proxy.corp.hpecorp.net:8080'"
+alias proxy=`export {http, https, ftp}_proxy='http://web-proxy.corp.hpecorp.net:8080'`
 alias unproxy="unset {http, https, ftp}_proxy"
 alias ws="cd /data/workspace/battagel"
 alias cdws="cd /export/ws/ws0/battagel"

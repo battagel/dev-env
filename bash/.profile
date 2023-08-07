@@ -15,11 +15,12 @@ fi
 # ENVIRONMENT VARIABLES
 export PATH=/auto/share/bin:~/.local/bin:$PATH
 export SHELL="/bin/zsh"
+export HFSIM_SIMULATION_PATH=/auto/workspace/$USER/hfsim
 
 
 # TERMINAL BEAUTIFICATION - Mostly not used if using zsh
 
-ACCENT_COL="\[$(tput setaf 215)\]"
+ACCENT_COL="\[$(tput setaf 110)\]"
 TEXT_COL1="\[$(tput setaf 249)\]"
 RESET_COL="\[$(tput sgr0)\]"
 
@@ -32,7 +33,9 @@ echo -ne "\e]12;white\a"
 #  ALIASES
 #  Oh My Zsh has lots of aliases. To view use "alias"
 
-alias ll="ls -al"
+alias ls="ls --color=tty"
+alias la="ls -al "
+alias ll="ls -l"
 alias cl="clear"
 
 # Work
